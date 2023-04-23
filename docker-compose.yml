@@ -4,14 +4,17 @@ services:
     build: .
     ports:
       - "6500:5000"
-    volumes:
-      - .:/app:ro
-      - /app/node_modules
     environment:
-      - NODE_ENV=development
       - PORT=5000
-      # - MONGO_URI=mongodb://mongo:27017/node-app
-      # - JWT_SECRET=secret
-      # - JWT_EXPIRES_IN=30d
-      # - JWT_COOKIE_EXPIRES_IN=30
-      # -
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=emash90
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:

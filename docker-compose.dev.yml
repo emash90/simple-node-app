@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  node-app:
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGO_USER=emash90
+      - MONGO_PASSWORD=123456
+    command: npm run dev
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=emash90
+      - MONGO_INITDB_ROOT_PASSWORD=123456
