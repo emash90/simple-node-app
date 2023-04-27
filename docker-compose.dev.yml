@@ -8,6 +8,7 @@ services:
       - NODE_ENV=development
       - MONGO_USER=emash90
       - MONGO_PASSWORD=123456
+      - SESSION_SECRET=secret
     command: npm run dev
   mongo:
     image: mongo

@@ -1,8 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const { MONGO_PASSWORD, MONGO_USER, MONGO_IP, MONGO_PORT } = require('./config/config');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const redis = require('redis');
+let RedisStore = require('connect-redis')(session);
 
+
+
+
+const { MONGO_PASSWORD, MONGO_USER, MONGO_IP, MONGO_PORT, REDIS_URL, REDIS_PORT } = require('./config/config');
+
+
+let redisClient = redis.createClient({
+    host: REDIS_URL,
+    port: REDIS_PORT
+});
 
 const port = process.env.PORT || 5000
 
@@ -26,9 +39,21 @@ const connect_with_retry = () => {
 connect_with_retry();
 
 
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+    store: new RedisStore({ client: redisClient }),
+    secret: SESSION_SECRET,
+    cookie: {
+        secure: false,
+        resave: false,
+        saveUninitialized: false,
+        httpOnly: true,
+        maxAge: 30000
+    }
+}));
+
 app.get('/', (req, res) => {
     res.send('Hello World!!!!!!!')
 })
-app.get('/api', (req, res) => {
-    res.send('api tab')
-})
+app.use('/api/v1/auth', require('./routes/authRoutes'));
