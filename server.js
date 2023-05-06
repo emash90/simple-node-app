@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const redis = require('redis');
+const redis = require("ioredis");
 let RedisStore = require('connect-redis')(session);
 
 
 
 
-const { MONGO_PASSWORD, MONGO_USER, MONGO_IP, MONGO_PORT, REDIS_URL, REDIS_PORT } = require('./config/config');
+const { MONGO_PASSWORD, MONGO_USER, MONGO_IP, MONGO_PORT, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require('./config/config');
 
 
 let redisClient = redis.createClient({
@@ -49,7 +49,7 @@ app.use(session({
         resave: false,
         saveUninitialized: false,
         httpOnly: true,
-        maxAge: 30000
+        maxAge: 3000000
     }
 }));
 
