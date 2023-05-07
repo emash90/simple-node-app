@@ -24,6 +24,8 @@ exports.signupUser = async (req, res) => {
         });
         user.save();
 
+        req.session.user = user;
+
         res.status(200).json({ message: 'User created successfully', user: {
             firstName, lastName, username, email, role
         } });
@@ -45,6 +47,7 @@ exports.loginUser = async (req, res) => {
         if (!password_correct) return res.status(400).json({ message: 'Invalid credentials' });
 
         //save session
+        req.session.user = user;
 
 
         //send response
