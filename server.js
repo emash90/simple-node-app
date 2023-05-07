@@ -38,7 +38,7 @@ const connect_with_retry = () => {
 
 connect_with_retry();
 
-
+app.enable('trust proxy');
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
@@ -55,5 +55,6 @@ app.use(session({
 
 app.get('/', (req, res) => {
     res.send('Hello World!!!!!!!')
+    console.log('Ye load balancer workeing');
 })
 app.use('/api/v1/auth', require('./routes/authRoutes'));
