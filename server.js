@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const redis = require("ioredis");
 let RedisStore = require('connect-redis')(session);
+const cors = require('cors');
 
 
 
@@ -39,6 +40,11 @@ const connect_with_retry = () => {
 connect_with_retry();
 
 app.enable('trust proxy');
+app.use(cors({
+    // origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'],
+    origin: '*',
+    credentials: true
+}));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
