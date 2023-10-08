@@ -16,3 +16,9 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
     volumes:
       - ./data:/data/db
+  client:
+    environment:
+      - REACT_APP_API_URL=http://node-app:8080
+    command: npm start
+    ports:
+      - "3000:3000"
