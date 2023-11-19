@@ -1,42 +1,56 @@
-# simple-node-app
-This repository contains a Node.js authentication project with a React front end, an Express server for the backend, MongoDB for database storage, and Redis for session management. This project provides a foundation for implementing user authentication and authorization in your web applications.
+# Authentication Project with Node.js, Express, MongoDB, Redis, React, and Nginx
 
-Prerequisites
-Before you can run this project, ensure you have the following software and tools installed on your system:
+## Overview
 
-Docker: Download and Install Docker
+This project implements user authentication with login and signup functionality using Node.js, Express, MongoDB, Redis, React, and Nginx. The application is containerized using Docker for easy deployment and scalability.
 
-Getting Started
-Follow these steps to get the project up and running on your local machine:
+## Features
 
-Clone the repository:
+- New User registration
+- User login with session management using Redis.
+- MongoDB for data storage.
+- Nginx for load balancing.
 
-shell
-Copy code
-git clone https://github.com/your-username/auth-node-project.git
-cd into the project and run the command docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
+## Technologies Used
 
-This will start the containers required i.e. node-backend container, react client, nginx, MongoDB and Redis in Docker containers with the required configurations.
+- Node.js
+- Express
+- MongoDB
+- Redis
+- React
+- Docker
+- Nginx
 
+## Prerequisites
 
-Open your web browser and visit http://localhost to access the React front end.
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-Features
-User registration with email and password.
-User login with session management using Redis.
-Protected routes that require authentication.
-MongoDB for storing user data.
-Docker containers for MongoDB and Redis, simplifying setup.
-A basic React front end for testing authentication flows.
-Folder Structure
-client: Contains the React front end.
-server: Contains the Express server and back-end code.
-docker-compose files: Contains Docker Compose scripts to start the required containers
-scripts: Contains helpful scripts for setting up the project.
-Contributing
-Feel free to contribute to this project by opening issues or pull requests. Please follow our code of conduct.
+## Getting Started
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/yourusername/authentication-project.git
+    ```
+
+2. **Navigate to the project directory:**
+
+    ```bash
+    cd authentication-project
+    ```
+
+3. **Build and start the Docker containers:**
+
+    ```bash
+    docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
+    ```
+
+4. **Access the application at [http://localhost](http://localhost).**
+
+## Live Demo
+
+The project is hosted on a Linode Cloud Server and is accessible through the following live link: [Live Demo](http://45.79.214.16/)
+
 
 
